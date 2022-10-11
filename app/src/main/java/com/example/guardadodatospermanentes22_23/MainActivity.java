@@ -9,14 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class MainActivity extends AppCompatActivity implements DialogoHora.CuandoEsteSeleccionadaLaHora{
+public class MainActivity extends AppCompatActivity implements DialogoHora.CuandoEsteSeleccionadaLaHora,
+        DialogoFecha.CuandoLaFechaCambie {
 
     private static final String EDAD = "EDAD";
     EditText nombre, edad;
-    Button bCargar, bBorrar, bGuardar,bHora;
-    TextView textViewHora;
+    Button bCargar, bBorrar, bGuardar, bHora, bFecha;
+    TextView textViewHora, textViewFecha;
     static final String NOMBRE_FICHERO = "DATOS";
     static final String NOMBRE = "NOMBRE";
 
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements DialogoHora.Cuand
         bCargar = findViewById(R.id.buttonCargar);
         bHora = findViewById(R.id.buttonHora);
         textViewHora = findViewById(R.id.textViewHora);
+        textViewFecha = findViewById(R.id.textViewFecha);
+        bFecha = findViewById(R.id.buttonFecha);
 
         bGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,15 +70,26 @@ public class MainActivity extends AppCompatActivity implements DialogoHora.Cuand
             @Override
             public void onClick(View view) {
                 DialogoHora dialogoHora = new DialogoHora();
-                dialogoHora.show(getSupportFragmentManager(),"Mi ventana para la hora");
+                dialogoHora.show(getSupportFragmentManager(), "Mi ventana para la hora");
             }
         });
-
+        bFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogoFecha dialogoFecha = new DialogoFecha();
+                dialogoFecha.show(getSupportFragmentManager(), "Escoge la fecha");
+            }
+        });
 
     }
 
     @Override
     public void enSeleccion(GregorianCalendar laHora) {
-        textViewHora.setText(laHora.get(GregorianCalendar.HOUR_OF_DAY)+":"+laHora.get(GregorianCalendar.MINUTE));
+        textViewHora.setText(laHora.get(GregorianCalendar.HOUR_OF_DAY) + ":" + laHora.get(GregorianCalendar.MINUTE));
+    }
+
+    @Override
+    public void fechaSeleccionada(GregorianCalendar fecha) {
+        textViewFecha.setText(fecha.get(Calendar.DAY_OF_MONTH)+"/"+fecha.get(Calendar.MONTH)+"/"+fecha.get(Calendar.YEAR));
     }
 }

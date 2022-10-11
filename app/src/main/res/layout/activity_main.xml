@@ -86,4 +86,26 @@
         app:layout_constraintStart_toEndOf="@+id/buttonHora"
         app:layout_constraintTop_toBottomOf="@+id/buttonBorrar" />
 
+    <Button
+        android:id="@+id/buttonFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/micolor"
+        android:text="Seleccionar Fecha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonHora" />
+
+    <TextView
+        android:id="@+id/textViewFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toEndOf="@+id/buttonFecha"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHora" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
