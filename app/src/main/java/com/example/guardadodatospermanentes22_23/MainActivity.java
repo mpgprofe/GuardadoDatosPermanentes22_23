@@ -2,10 +2,12 @@ package com.example.guardadodatospermanentes22_23;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements DialogoHora.Cuand
 
     private static final String EDAD = "EDAD";
     EditText nombre, edad;
-    Button bCargar, bBorrar, bGuardar, bHora, bFecha;
+    Button bCargar, bBorrar, bGuardar, bHora, bFecha, bFecha2;
     TextView textViewHora, textViewFecha;
     static final String NOMBRE_FICHERO = "DATOS";
     static final String NOMBRE = "NOMBRE";
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements DialogoHora.Cuand
         textViewHora = findViewById(R.id.textViewHora);
         textViewFecha = findViewById(R.id.textViewFecha);
         bFecha = findViewById(R.id.buttonFecha);
+        bFecha2 = findViewById(R.id.buttonFecha2);
 
         bGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +81,24 @@ public class MainActivity extends AppCompatActivity implements DialogoHora.Cuand
             public void onClick(View view) {
                 DialogoFecha dialogoFecha = new DialogoFecha();
                 dialogoFecha.show(getSupportFragmentManager(), "Escoge la fecha");
+            }
+        });
+
+        bFecha2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                int año = calendar.get(Calendar.YEAR);
+                int mes = calendar.get(Calendar.MONTH);
+                int día = calendar.get(Calendar.DAY_OF_MONTH);
+
+                new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int año, int mes, int día) {
+                        textViewFecha.setText(día+"/"+mes+"/"+año);
+
+                    }
+                }, año, mes, día).show();
             }
         });
 

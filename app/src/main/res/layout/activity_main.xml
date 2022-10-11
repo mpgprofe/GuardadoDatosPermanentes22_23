@@ -108,4 +108,12 @@
         app:layout_constraintStart_toEndOf="@+id/buttonFecha"
         app:layout_constraintTop_toBottomOf="@+id/textViewHora" />
 
+    <Button
+        android:id="@+id/buttonFecha2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Fecha2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFecha" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
